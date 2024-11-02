@@ -10,14 +10,16 @@ public class MineSweeperGame extends JFrame {
     private boolean[][] mines;
     private boolean[][] flags;
     private int[][] numbers;
-    private final int GRID_SIZE = 10;
+    private int GRID_SIZE = 10;
     private final int BUTTON_SIZE = 45;
-    private final int TOTAL_MINES = 15; // 총 지뢰 개수
+    private int TOTAL_MINES = 15; // 총 지뢰 개수
     private boolean gameOver = false;
 
-    public MineSweeperGame() {
+    public MineSweeperGame(int grid_size, int total_mines) {
+        GRID_SIZE = grid_size;
+        TOTAL_MINES = total_mines;
+
         setTitle("지뢰찾기");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
 
         // 배열 초기화
@@ -35,6 +37,7 @@ public class MineSweeperGame extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     private void createButtons() {
@@ -83,6 +86,9 @@ public class MineSweeperGame extends JFrame {
             else {
                 i -= 1;
             }
+
+            if (GRID_SIZE * GRID_SIZE == TOTAL_MINES)
+                break;
         }
 
         for (int i = 0; i < GRID_SIZE; i++) {
@@ -184,11 +190,5 @@ public class MineSweeperGame extends JFrame {
 //                }
 //            }
 //        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new MineSweeperGame().setVisible(true);
-        });
     }
 }
