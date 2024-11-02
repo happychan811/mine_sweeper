@@ -164,8 +164,137 @@ public class MineSweeperGame extends JFrame {
         if (numbers[row][col] > 0) {
             buttons[row][col].setText(String.valueOf(numbers[row][col]));
             setNumberColor(buttons[row][col], numbers[row][col]);
+        } else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal3(row + i, col + j);
+                }
+            }
         }
     }
+
+    private void reveal3(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal4(row + i, col + j);
+                }
+            }
+        }
+    }
+    private void reveal4(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal5(row + i, col + j);
+                }
+            }
+        }
+    }
+    private void reveal5(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal6(row + i, col + j);
+                }
+            }
+        }
+    }
+    private void reveal6(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal7(row + i, col + j);
+                }
+            }
+        }
+    }
+    private void reveal7(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal8(row + i, col + j);
+                }
+            }
+        }
+    }
+    private void reveal8(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal9(row + i, col + j);
+                }
+            }
+        }
+    }
+
+    private void reveal9(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
+        }
+    }
+
 
     private void setNumberColor(JButton button, int number) {
         Color[] colors = {
