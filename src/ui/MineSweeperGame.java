@@ -292,6 +292,25 @@ public class MineSweeperGame extends JFrame {
         if (numbers[row][col] > 0) {
             buttons[row][col].setText(String.valueOf(numbers[row][col]));
             setNumberColor(buttons[row][col], numbers[row][col]);
+        }else {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    reveal10(row + i, col + j);
+                }
+            }
+        }
+    }
+
+    private void reveal10(int row, int col) {
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
+                !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        breaks[row][col] = true;
+        buttons[row][col].setBackground(Color.white);
+        if (numbers[row][col] > 0) {
+            buttons[row][col].setText(String.valueOf(numbers[row][col]));
+            setNumberColor(buttons[row][col], numbers[row][col]);
         }
     }
 
