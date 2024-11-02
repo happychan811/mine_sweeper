@@ -6,7 +6,12 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class MineSweeperGame extends JFrame {
+    private JPanel gamePanle;
+    private JPanel scorePanle;
     private JButton[][] buttons;
+    private JLabel mineCount;
+    private JLabel time;
+
     private boolean[][] mines;
     private boolean[][] flags;
     private int[][] numbers;
@@ -21,7 +26,6 @@ public class MineSweeperGame extends JFrame {
         TOTAL_MINES = total_mines;
 
         setTitle("지뢰찾기");
-        setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
 
         // 배열 초기화
         buttons = new JButton[GRID_SIZE][GRID_SIZE];
@@ -34,8 +38,22 @@ public class MineSweeperGame extends JFrame {
         placeMines();
         calculateNumbers();
 
+        //점수판
+        scorePanle = new JPanel();
+
+        mineCount = new JLabel("10000000");
+        scorePanle.add(mineCount);
+
+        time = new JLabel("0");
+        scorePanle.add(time);
+
+        add(scorePanle);
+
         // 버튼 생성 및 이벤트 설정
+        gamePanle = new JPanel();
+        gamePanle.setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
         createButtons();
+        add(gamePanle);
 
         pack();
         setLocationRelativeTo(null);
@@ -70,7 +88,7 @@ public class MineSweeperGame extends JFrame {
                 });
                 //
                 buttons[row][col] = button;
-                add(button);
+                gamePanle.add(button);
                 buttons[row][col].setBackground(Color.LIGHT_GRAY);
             }
         }
@@ -125,7 +143,7 @@ public class MineSweeperGame extends JFrame {
             if (mines[row][col]) {
                 gameOver = true;
                 revealAllMines();
-                JOptionPane.showMessageDialog(this, "게임 오버!");
+                JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 실패했습니다");
             } else {
                 reveal(row, col);
             }
