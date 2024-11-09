@@ -12,6 +12,7 @@ public class MineSweeperGame extends JFrame {
     private JLabel mineCount;
     private JLabel time;
 
+    private int flagcount = 0;
     private boolean[][] mines;
     private boolean[][] flags;
     private int[][] numbers;
@@ -143,20 +144,34 @@ public class MineSweeperGame extends JFrame {
             if (mines[row][col]) {
                 gameOver = true;
                 revealAllMines();
-                JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 실패했습니다");
+                JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 실패했습네다");
             } else {
                 reveal(row, col);
             }
         }
     }//
-
+    private void end(){
+        int count = 0;
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                if(mines[i][j]==flags[i][j]){
+                    count++;
+                }
+            }
+        }
+        if(count == flagcount && count == TOTAL_MINES){
+            JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 성공적으로 완료됬습네다");
+        }
+    }
     private void handleRightClick(int row, int col) {
         if (buttons[row][col].isEnabled() && !flags[row][col] && !breaks[row][col]) {
             buttons[row][col].setBackground(Color.green);
             flags[row][col] = true;
+            flagcount++;
         }else if (buttons[row][col].isEnabled() && flags[row][col] && !breaks[row][col]){
             buttons[row][col].setBackground(Color.LIGHT_GRAY);
             flags[row][col] = false;
+            flagcount--;
         }
     }
 
