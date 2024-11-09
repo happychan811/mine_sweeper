@@ -148,7 +148,7 @@ public class MineSweeperGame extends JFrame {
                 reveal(row, col);
             }
         }
-    }
+    }//
 
     private void handleRightClick(int row, int col) {
         if (buttons[row][col].isEnabled() && !flags[row][col] && !breaks[row][col]) {
