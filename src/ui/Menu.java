@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//SQL SCHEMAS = north_korea_mine_sweeper / Table = mine_sweeper / Column 1 = id[int] (PK,NN,UQ,AI) / Column 2 = score[int] (NN) / Column 3 = name[VARCHAR] (NN)
+
 public class Menu extends JFrame {
     private JLabel title;
 
