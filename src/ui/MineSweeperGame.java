@@ -168,6 +168,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
             }
         }
         if(count == TOTAL_MINES){
+            timer.stop();
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
         }
     }
@@ -359,6 +360,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
     }
 
     private void revealAllMines() {
+        timer.stop();
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
                 if (mines[i][j] && !flags[i][j]) {
