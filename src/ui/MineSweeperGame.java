@@ -23,7 +23,6 @@ public class MineSweeperGame extends JFrame implements ActionListener {
     private int TOTAL_MINES; // 총 지뢰 개수
     private boolean[][] breaks;
     private boolean gameOver = false;
-    private int flagcount = 0;
 
     public MineSweeperGame(int grid_size, int total_mines) {
         GRID_SIZE = grid_size;
@@ -157,7 +156,8 @@ public class MineSweeperGame extends JFrame implements ActionListener {
             }
         }
 
-    }//
+    }
+
     private void end(){
         int count = 0;
         for (int i = 0; i < GRID_SIZE; i++) {
@@ -167,10 +167,9 @@ public class MineSweeperGame extends JFrame implements ActionListener {
                 }
             }
         }
-        if(count == flagcount && count == TOTAL_MINES){
+        if(count == TOTAL_MINES){
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 성공적으로 완료됬습네다");
         }
-
     }
 
     private void handleRightClick(int row, int col) {
@@ -183,7 +182,9 @@ public class MineSweeperGame extends JFrame implements ActionListener {
             flags[row][col] = false;
             expectMines++;
         }
-        end();
+        if(expectMines == 0){
+            end();
+        }
         mineCount.setText("예상 지뢰수: " + expectMines);
     }
 
