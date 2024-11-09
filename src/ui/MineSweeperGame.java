@@ -173,6 +173,7 @@ public class MineSweeperGame extends JFrame {
             flags[row][col] = false;
             flagcount--;
         }
+        end();
     }
 
     private void reveal(int row, int col) {
