@@ -154,7 +154,7 @@ public class MineSweeperGame extends JFrame {
         int count = 0;
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                if(mines[i][j]==flags[i][j]){
+                if(flags[i][j] == true && flags[i][j] == mines[i][j]){
                     count++;
                 }
             }
