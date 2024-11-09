@@ -168,7 +168,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
             }
         }
         if(count == TOTAL_MINES){
-            JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 성공적으로 완료됬습네다");
+            JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
         }
     }
 
@@ -188,9 +188,41 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         mineCount.setText("예상 지뢰수: " + expectMines);
     }
 
+    private void numberReveal(int row, int col) {
+        int count = 0;
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (row+i < 0 || row+i >= GRID_SIZE || col+j < 0 || col+j >= GRID_SIZE){
+                    System.out.print("");
+                } else if (flags[row+i][col+j] == true){
+                    count++;
+                }
+            }
+        }
+        if(count==numbers[row][col]){
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    if (row+i < 0 || row+i >= GRID_SIZE || col+j < 0 || col+j >= GRID_SIZE){
+                        System.out.print("");
+                    } else {
+                        if(flags[row + i][col + i] == mines[row + i][col + i]){
+                            reveal2(row + i, col + j);
+                        }else {
+                            revealAllMines();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void reveal(int row, int col) {
         if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE ||
                 !buttons[row][col].isEnabled() || flags[row][col]) {
+            return;
+        }
+        if(breaks[row][col] == true && numbers[row][col] > 0){
+            numberReveal(row,col);
             return;
         }
         breaks[row][col] = true;
