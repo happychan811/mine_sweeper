@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame {
     private JLabel title;
 
+    private JPanel panelCenter;
     private JPanel setPanel;
 
     private JLabel gridSetText;
@@ -20,16 +21,18 @@ public class Menu extends JFrame {
         setTitle("지뢰찾기");
         setSize(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
 
         title = new JLabel("혁명적인 지뢰찾기");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("궁서체", Font.BOLD, 40));
-        add(title);
+        add(title, BorderLayout.NORTH);
 
+        panelCenter = new JPanel();
+        panelCenter.setLayout(new BorderLayout());
         setPanel = new JPanel();
         setPanel.setLayout(new GridLayout(2, 2));
-        add(setPanel);
+        panelCenter.add(setPanel, BorderLayout.NORTH);
 
         gridSetText = new JLabel("남조선 가로 세로 크기 지정");
         gridSetText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,7 +72,8 @@ public class Menu extends JFrame {
                 }
             }
         });
-        add(startButton);
+        panelCenter.add(startButton, BorderLayout.SOUTH);
+        add(panelCenter, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);
         setVisible(true);
