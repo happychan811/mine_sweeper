@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class MineSweeperGame extends JFrame implements ActionListener {
@@ -48,7 +49,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         //점수판
         scorePanle = new JPanel();
 
-        mineCount = new JLabel("예상 지뢰수: " + total_mines);
+        mineCount = new JLabel("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + total_mines);
         scorePanle.add(mineCount);
 
         timeLabel = new JLabel("시간: 0");
@@ -163,6 +164,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
     }
 
     private void end(){
+        MineDAO mineDAO = new MineDAO();
         int count = 0;
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
@@ -174,7 +176,10 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(count == TOTAL_MINES){
             timer.stop();
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
-            dispose();
+            try{
+                mineDAO.addScore(time,TOTAL_MINES,GRID_SIZE);
+            }catch (SQLException e){
+            }
         }
     }
 
@@ -191,7 +196,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(expectMines == 0){
             end();
         }
-        mineCount.setText("예상 지뢰수: " + expectMines);
+        mineCount.setText("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + expectMines);
     }
 
     private void numberReveal(int row, int col) {
