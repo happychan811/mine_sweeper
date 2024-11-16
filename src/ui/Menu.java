@@ -50,7 +50,7 @@ public class Menu extends JFrame {
         mineSetField = new JTextField("15", 10);
         setPanel.add(mineSetField);
 
-        startButton = new JButton("혁명 시작");
+        startButton = new JButton("혁명을 시작합네다");
         startButton.setFont(new Font("궁서체", Font.BOLD, 15));
         startButton.addActionListener(new AbstractAction() {
             @Override

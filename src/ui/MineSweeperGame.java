@@ -48,7 +48,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         //점수판
         scorePanle = new JPanel();
 
-        mineCount = new JLabel("예상 지뢰수: " + total_mines);
+        mineCount = new JLabel("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + total_mines);
         scorePanle.add(mineCount);
 
         timeLabel = new JLabel("시간: 0");
@@ -186,7 +186,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(expectMines == 0){
             end();
         }
-        mineCount.setText("예상 지뢰수: " + expectMines);
+        mineCount.setText("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + expectMines);
     }
 
     private void numberReveal(int row, int col) {
