@@ -193,9 +193,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         int count = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                if (row+i < 0 || row+i >= GRID_SIZE || col+j < 0 || col+j >= GRID_SIZE){
-                    System.out.print("");
-                } else if (flags[row+i][col+j] == true){
+                if (row + i >= 0 && row + i < GRID_SIZE && col + j >= 0 && col + j < GRID_SIZE && buttons[row + i][col + j].isEnabled() && flags[row + i][col + j]){
                     count++;
                 }
             }
@@ -203,12 +201,11 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(count==numbers[row][col]){
             for (int i = -1; i <= 1; i++) {
                 for (int j = -1; j <= 1; j++) {
-                    if (row+i < 0 || row+i >= GRID_SIZE || col+j < 0 || col+j >= GRID_SIZE){
-                        System.out.print("");
-                    } else {
-                        if(flags[row + i][col + i] == mines[row + i][col + i]){
+                    if (row + i >= 0 && row + i < GRID_SIZE && col + j >= 0 && col + j < GRID_SIZE && buttons[row + i][col + j].isEnabled()) {
+                        if(!flags[row + i][col + j]){
                             reveal2(row + i, col + j);
-                        }else {
+                        }
+                        if(flags[row + i][col + j] != mines[row + i][col + j]){
                             revealAllMines();
                         }
                     }
