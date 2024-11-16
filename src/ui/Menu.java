@@ -81,7 +81,7 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == rankButton) {
-                    //랭킹보드
+                    new Ranking();
                 }
             }
         });
