@@ -18,12 +18,4 @@ public class DBC {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public int getName() {
-        return name;
-    }
-
-    public void setName(int name) {
-        this.name = name;
-    }
 }
