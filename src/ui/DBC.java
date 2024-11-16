@@ -1,3 +1,5 @@
+package ui;
+
 public class DBC {
     private int id;
     private int score;
