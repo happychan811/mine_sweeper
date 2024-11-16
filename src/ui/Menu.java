@@ -18,6 +18,7 @@ public class Menu extends JFrame {
     private JTextField mineSetField;
 
     private JButton startButton;
+    private JButton rankButton;
 
     public Menu() {
         setTitle("지뢰찾기");
@@ -74,7 +75,18 @@ public class Menu extends JFrame {
                 }
             }
         });
-        panelCenter.add(startButton, BorderLayout.SOUTH);
+        rankButton = new JButton("동지들을 확인합네다");
+        rankButton.setFont(new Font("궁서체", Font.BOLD, 15));
+        rankButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == rankButton) {
+                    //랭킹보드
+                }
+            }
+        });
+        panelCenter.add(startButton, BorderLayout.CENTER);
+        panelCenter.add(rankButton, BorderLayout.SOUTH);
         add(panelCenter, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);

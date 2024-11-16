@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class MineSweeperGame extends JFrame implements ActionListener {
@@ -159,6 +160,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
     }
 
     private void end(){
+        MineDAO mineDAO = new MineDAO();
         int count = 0;
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
@@ -170,6 +172,10 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(count == TOTAL_MINES){
             timer.stop();
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
+            try{
+                mineDAO.addScore(time,TOTAL_MINES,GRID_SIZE);
+            }catch (SQLException e){
+            }
         }
     }
 
