@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//SQL SCHEMAS = north_korea_mine_sweeper / Table = mine_sweeper / Column 1 = id[int] (PK,NN,UQ,AI) / Column 2 = score[int] (NN) / Column 3 = mine[int] (NN) / Column 4 = map[int] (NN) / Column 5 = time[int] (NN)
+
 public class Menu extends JFrame {
     public CardLayout cardLayout;
     public JPanel container;  // Container를 JPanel로 변경
@@ -77,14 +79,14 @@ public class Menu extends JFrame {
                         int total_mines = Integer.parseInt(mineSetField.getText());
 
                         if (grid_size * grid_size <= total_mines) {
-                            JOptionPane.showMessageDialog(getContentPane(), "지뢰의 최대값: " + (grid_size * grid_size - 1));
+                            JOptionPane.showMessageDialog(getContentPane(), "아무래도 지뢰가 이정도로 많을 것 같진 않습네다.\n이 공간이라면 " + (grid_size * grid_size - 1) + "개 정도의 지뢰가 있을 수 있을 것 으로 추정됩네다");
                         }
                         else {
                             new MineSweeperGame(grid_size, total_mines);
                         }
                     }
                     else {
-                        JOptionPane.showMessageDialog(getContentPane(), "입력칸에 숫자를 모두 입력하시오");
+                        JOptionPane.showMessageDialog(getContentPane(), "어디를 조사하라는 겁네까?\n이곳은 지뢰가 없거나 존제하지 않는 땅입네다.");
                     }
                 }
             }

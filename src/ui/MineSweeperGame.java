@@ -24,6 +24,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
     private int TOTAL_MINES; // 총 지뢰 개수
     private boolean[][] breaks;
     private boolean gameOver = false;
+    private int score = 0;
 
     public MineSweeperGame(int grid_size, int total_mines) {
         GRID_SIZE = grid_size;
@@ -49,10 +50,10 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         //점수판
         scorePanle = new JPanel();
 
-        mineCount = new JLabel("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + total_mines);
+        mineCount = new JLabel("남조선 괴뢰들의 지뢰 배치 수 분석 결과 : " + total_mines);
         scorePanle.add(mineCount);
 
-        timeLabel = new JLabel("시간: 0");
+        timeLabel = new JLabel("시간 : 0");
         scorePanle.add(timeLabel);
 
         add(scorePanle, BorderLayout.NORTH);
@@ -155,7 +156,6 @@ public class MineSweeperGame extends JFrame implements ActionListener {
             if (mines[row][col]) {
                 gameOver = true;
                 revealAllMines();
-                JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 실패했습네다");
                 dispose();
             } else {
                 reveal(row, col);
@@ -176,8 +176,9 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         if(count == TOTAL_MINES){
             timer.stop();
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
+            score += TOTAL_MINES * 100 * TOTAL_MINES / (GRID_SIZE/10) / time;
             try{
-                mineDAO.addScore(time,TOTAL_MINES,GRID_SIZE);
+                mineDAO.addScore(score,TOTAL_MINES,GRID_SIZE,time);
             }catch (SQLException e){
             }
         }
@@ -217,8 +218,10 @@ public class MineSweeperGame extends JFrame implements ActionListener {
                     if (row+i < 0 || row+i >= GRID_SIZE || col+j < 0 || col+j >= GRID_SIZE || (i == 0 && j == 0))
                         continue;
 
-                    if(!flags[row + i][col + j]){
+                    if(!flags[row + i][col + j] && !mines[row +i][col + j]){
                         reveal(row + i, col + j);
+                    }else if(!flags[row + i][col + j] && mines[row +i][col + j]){
+                        revealAllMines();
                     }
                 }
             }
@@ -276,11 +279,12 @@ public class MineSweeperGame extends JFrame implements ActionListener {
                 }
             }
         }
+        JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 실패했습네다");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         time += timer.getDelay() / 1000;
-        timeLabel.setText("시간: " + time);
+        timeLabel.setText("시간 : " + time);
     }
 }
