@@ -34,5 +34,7 @@ public class DBC {
         return time;
     }
 
-    public void setTime(int time) {this.time = time;}
+    public void setTime(int time) {
+        this.time = time;
+    }
 }

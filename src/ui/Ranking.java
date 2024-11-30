@@ -3,18 +3,20 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Ranking extends JPanel {
     private JLabel title;
 
     private JPanel rankingPanel;
 
-    private JLabel text;
     private JScrollPane scrollPane;
+    private JPanel textPanel;
 
     private JButton backButton;
 
-
+    ArrayList<Score> scoreList;
 
     public Ranking(Menu menu) {
         setLayout(new BorderLayout());
@@ -27,8 +29,9 @@ public class Ranking extends JPanel {
         rankingPanel = new JPanel();
         rankingPanel.setLayout(new BorderLayout());
 
-        text = new JLabel();
-        scrollPane = new JScrollPane(text);
+        textPanel = new JPanel();
+        textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
+        scrollPane = new JScrollPane(textPanel);
         rankingPanel.add(scrollPane);
 
         add(rankingPanel, BorderLayout.CENTER);
@@ -44,9 +47,23 @@ public class Ranking extends JPanel {
             }
         });
         add(backButton, BorderLayout.SOUTH);
+
+        scoreList = new ArrayList<>();
     }
 
-    public void UpdateRanking() {
+    public void UpdateRanking() throws SQLException {
+        int[] scores = MineDAO.getAllScores();
+        int[] mines = MineDAO.getAllMines();
+        int[] maps = MineDAO.getAllMaps();
+        int[] times = MineDAO.getAllTimes();
 
+        for (int i = 0; i < textPanel.getComponentCount(); i++) {
+            textPanel.remove(i);
+        }
+
+        for (int i = 0; i < scores.length; i++) {
+            scoreList.add(new Score(scores[i], mines[i], maps[i], times[i]));
+            textPanel.add(scoreList.get(i));
+        }
     }
 }

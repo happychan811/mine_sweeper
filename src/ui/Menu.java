@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 //SQL SCHEMAS = north_korea_mine_sweeper / Table = mine_sweeper / Column 1 = id[int] (PK,NN,UQ,AI) / Column 2 = score[int] (NN) / Column 3 = mine[int] (NN) / Column 4 = map[int] (NN) / Column 5 = time[int] (NN)
 
@@ -98,6 +99,11 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == rankButton) {
                     cardLayout.next(container);
+                    try {
+                        ranking.UpdateRanking();
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
