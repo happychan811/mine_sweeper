@@ -175,8 +175,8 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         }
         if(count == TOTAL_MINES){
             timer.stop();
+            score = (TOTAL_MINES * 100 * TOTAL_MINES) / (GRID_SIZE / 10) / time;
             JOptionPane.showMessageDialog(this, "인민 낙원의 공작원이 혁명적으로 성공하였습네다");
-            score += TOTAL_MINES * 100 * TOTAL_MINES / (GRID_SIZE/10) / time;
             try{
                 mineDAO.addScore(score,TOTAL_MINES,GRID_SIZE,time);
             }catch (SQLException e){
