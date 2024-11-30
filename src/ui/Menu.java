@@ -62,7 +62,7 @@ public class Menu extends JFrame {
                         int total_mines = Integer.parseInt(mineSetField.getText());
 
                         if (grid_size * grid_size <= total_mines) {
-                            JOptionPane.showMessageDialog(getContentPane(), "지뢰의 최대값: " + (grid_size * grid_size - 1));
+                            JOptionPane.showMessageDialog(getContentPane(), "아무래도 지뢰가 이정도로 많을 것 같진 않습네다 : " + (grid_size * grid_size - 1));
 
                         }
                         else {
@@ -70,7 +70,7 @@ public class Menu extends JFrame {
                         }
                     }
                     else {
-                        JOptionPane.showMessageDialog(getContentPane(), "입력칸에 숫자를 모두 입력하시오");
+                        JOptionPane.showMessageDialog(getContentPane(), "어디를 조사하라는 겁네까?");
                     }
                 }
             }

@@ -52,7 +52,7 @@ public class MineSweeperGame extends JFrame implements ActionListener {
         mineCount = new JLabel("남조선 괴뢰들의 지뢰 배치 동향 분석 결과 : " + total_mines);
         scorePanle.add(mineCount);
 
-        timeLabel = new JLabel("시간: 0");
+        timeLabel = new JLabel("시간 : 0");
         scorePanle.add(timeLabel);
 
         add(scorePanle, BorderLayout.NORTH);
