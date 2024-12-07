@@ -16,8 +16,6 @@ public class Ranking extends JPanel {
 
     private JButton backButton;
 
-    ArrayList<Score> scoreList;
-
     public Ranking(Menu menu) {
         setLayout(new BorderLayout());
 
@@ -48,22 +46,17 @@ public class Ranking extends JPanel {
         });
         add(backButton, BorderLayout.SOUTH);
 
-        scoreList = new ArrayList<>();
     }
 
     public void UpdateRanking() throws SQLException {
-        int[] scores = MineDAO.getAllScores();
-        int[] mines = MineDAO.getAllMines();
-        int[] maps = MineDAO.getAllMaps();
-        int[] times = MineDAO.getAllTimes();
+        Score[] score = MineDAO.getAllScore();
 
-        for (int i = 0; i < textPanel.getComponentCount(); i++) {
-            textPanel.remove(i);
-        }
+        textPanel.removeAll();
 
-        for (int i = 0; i < scores.length; i++) {
-            scoreList.add(new Score(scores[i], mines[i], maps[i], times[i]));
-            textPanel.add(scoreList.get(i));
+        for (int i = 0; i < score.length; i++) {
+            if (score[i] != null) {
+                textPanel.add(score[i]);
+            }
         }
     }
 }

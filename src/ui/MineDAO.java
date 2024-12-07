@@ -16,16 +16,15 @@ public class MineDAO {
         }
     }
 
-    public static int[] getAllScores() throws SQLException {
+    public static int[] getAllId() throws SQLException {
         String sql = "SELECT * FROM mine_sweeper";
-        System.out.println("a");
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql);
         ) {
             ArrayList<Integer> arrayList = new ArrayList<>();
             while (rs.next()) {
-                arrayList.add(rs.getInt("score"));
+                arrayList.add(rs.getInt("id"));
             }
             int[] arr = new int[arrayList.size()];
             for (int i = 0; i < arrayList.size(); i++)
@@ -35,57 +34,29 @@ public class MineDAO {
         }
     }
 
-    public static int[] getAllMines() throws SQLException {
-        String sql = "SELECT * FROM mine_sweeper";
+    public static Score[] getAllScore() throws SQLException {
+        String sql = "SELECT * FROM mine_sweeper ORDER BY score DESC";
+        ArrayList<Score> arrayList = new ArrayList<>();
+
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql);
         ) {
-            ArrayList<Integer> arrayList = new ArrayList<>();
             while (rs.next()) {
-                arrayList.add(rs.getInt("mine"));
+                arrayList.add(new Score(
+                        rs.getInt("id"),
+                        rs.getInt("score"),
+                        rs.getInt("mine"),
+                        rs.getInt("map"),
+                        rs.getInt("time")
+                ));
             }
-            int[] arr = new int[arrayList.size()];
-            for (int i = 0; i < arrayList.size(); i++)
-                arr[i] = arrayList.get(i);
-
-            return arr;
         }
-    }
 
-    public static int[] getAllMaps() throws SQLException {
-        String sql = "SELECT * FROM mine_sweeper";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
-        ) {
-            ArrayList<Integer> arrayList = new ArrayList<>();
-            while (rs.next()) {
-                arrayList.add(rs.getInt("map"));
-            }
-            int[] arr = new int[arrayList.size()];
-            for (int i = 0; i < arrayList.size(); i++)
-                arr[i] = arrayList.get(i);
+        Score[] arr = new Score[arrayList.size()];
+        for (int i = 0; i < arrayList.size(); i++)
+            arr[i] = arrayList.get(i);
 
-            return arr;
-        }
-    }
-
-    public static int[] getAllTimes() throws SQLException {
-        String sql = "SELECT * FROM mine_sweeper";
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql);
-        ) {
-            ArrayList<Integer> arrayList = new ArrayList<>();
-            while (rs.next()) {
-                arrayList.add(rs.getInt("time"));
-            }
-            int[] arr = new int[arrayList.size()];
-            for (int i = 0; i < arrayList.size(); i++)
-                arr[i] = arrayList.get(i);
-
-            return arr;
-        }
+        return arr;
     }
 }
